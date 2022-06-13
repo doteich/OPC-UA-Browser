@@ -1,0 +1,22 @@
+{
+    "name": "opcua2rest",
+    "version": "1.0.0",
+    "description": "NodeJs Backend to browse an OPC UA Server via an REST endpoint",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app.js"
+    },
+    "keywords": [
+        "opcua",
+        "rest",
+        "api"
+    ],
+    "author": "Max Eichhorn",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.18.1",
+        "node-opcua": "^2.70.0",
+        "nodemon": "^2.0.16"
+    }
+}
