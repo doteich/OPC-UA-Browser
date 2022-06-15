@@ -1,7 +1,7 @@
 const opcua = require("node-opcua")
 
 
-exports.browseOPCUA = (async(req, res, next) => {
+exports.browseOPCUA = (async (req, res, next) => {
 
 
     const endpointURL = req.query.url
@@ -25,22 +25,22 @@ exports.browseOPCUA = (async(req, res, next) => {
 
             const session = await client.createSession();
 
-            session.browse(node, (err, browseResult) => {
-                if (!err) {
-                    console.log(browseResult.references.toString())
-                } else {
-                    const error = new Error("Browse Error")
-                    error.statusCode = 500;
-                    next(error);
-                }
-            })
+            /* session.browse(node, (err, browseResult) => {
+                 if (!err) {
+                     console.log(browseResult.references.toString())
+                 } else {
+                     const error = new Error("Browse Error")
+                     error.statusCode = 500;
+                     next(error);
+                 }
+             }) */
 
-            const test = session.browse(node)
+            const browsedTags = session.browse(node)
 
             await session.close();
             await client.disconnect();
 
-            console.log(test)
+            return browsedTags
 
         } catch (err) {
             const error = new Error("Kein Endpunkt mit dieser Konfiguration gefunden")
@@ -51,7 +51,16 @@ exports.browseOPCUA = (async(req, res, next) => {
     }
 
     browse()
-
+        .then((tags) => {
+            res.status(200).json({
+                message: tags.references
+            })
+        })
+        .catch((err) => {
+            let error = new Error(err)
+            err.statusCode = 500
+            next(error);
+        })
 
 
 
