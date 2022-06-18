@@ -56,6 +56,7 @@ section h3 {
   width: 100%;
   display: flex;
   flex-direction: column;
+  
 }
 .component > * {
   margin-bottom: 1%;
@@ -69,5 +70,7 @@ section h3 {
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
+  
 }
+
 </style>
