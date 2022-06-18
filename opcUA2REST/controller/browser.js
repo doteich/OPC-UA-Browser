@@ -12,6 +12,8 @@ exports.browseOPCUA = (async(req, res, next) => {
     const userName = req.query.username
     const password = req.query.password
 
+    console.log(req.query)
+
     async function browse() {
         try {
 
@@ -25,7 +27,7 @@ exports.browseOPCUA = (async(req, res, next) => {
 
             const session = await client.createSession();
 
-            session.browse(node, (err, browseResult) => {
+            /* session.browse(node, (err, browseResult) => {
                 if (!err) {
                     console.log(browseResult.references.toString())
                 } else {
@@ -33,32 +35,32 @@ exports.browseOPCUA = (async(req, res, next) => {
                     error.statusCode = 500;
                     next(error);
                 }
-            })
+            }) */
 
-            const browsedNodes = session.browse(node)
+            const browsedNodes = await session.browse(node)
 
             await session.close();
             await client.disconnect();
 
-            return (await browsedNodes).references
+            return browsedNodes.references
 
         } catch (err) {
             const error = new Error("Kein Endpunkt mit dieser Konfiguration gefunden")
             error.statusCode = 400;
-            next(error);
+            throw error
 
         }
     }
 
     browse()
         .then((result) => {
-
+            console.log(result)
             res.status(200).json({
                 message: result
             })
         })
         .catch((err) => {
-            const error = new Error("Browse Error")
+            const error = new Error(err)
             error.statusCode = 500;
             next(error);
         })

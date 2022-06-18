@@ -30,8 +30,7 @@ const store = createStore({
     },
     actions: {
         browse(context, payload) {
-            console.log(context)
-            console.log(payload)
+
             axios.get(`${urlPrefix}browse`, { params: payload })
                 .then((res) => {
                     context.commit("setConfig", payload)
@@ -41,7 +40,22 @@ const store = createStore({
                 .catch((err) => {
                     console.log(err)
                 })
+        },
+        browseNode(context, payload) {
+            let config = context.state.opcConfig
+            config.node = payload
+
+            axios.get(`${urlPrefix}browse`, { params: config })
+                .then((res) => {
+
+
+                    context.commit("setTags", res.data.message)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
+
     }
 })
 
