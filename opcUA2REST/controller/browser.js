@@ -35,12 +35,12 @@ exports.browseOPCUA = (async(req, res, next) => {
                 }
             })
 
-            const test = session.browse(node)
+            const browsedNodes = session.browse(node)
 
             await session.close();
             await client.disconnect();
 
-            console.log(test)
+            return (await browsedNodes).references
 
         } catch (err) {
             const error = new Error("Kein Endpunkt mit dieser Konfiguration gefunden")
@@ -51,6 +51,17 @@ exports.browseOPCUA = (async(req, res, next) => {
     }
 
     browse()
+        .then((result) => {
+
+            res.status(200).json({
+                message: result
+            })
+        })
+        .catch((err) => {
+            const error = new Error("Browse Error")
+            error.statusCode = 500;
+            next(error);
+        })
 
 
 
