@@ -47,16 +47,21 @@ const store = createStore({
                 let branch = branchArray[el]
                 console.log(branch.nodeId)
                 if (arr.length > 0) {
-                    console.log("HALLO")
-                    findChild(branch.childs, arr)
+
+                    let nextBranch = findChild(branch.childs, arr)
+                    if (nextBranch) {
+                        return nextBranch
+                    }
                 } else {
                     console.log(branch)
-                    branch.childs = payload.data
+                    return branch
 
                 }
             }
 
-            findChild(state.tags, parentIndex)
+            const returnedBranch = findChild(state.tags, parentIndex)
+
+            returnedBranch.childs = payload.data
 
 
 
