@@ -1,15 +1,31 @@
 <template>
-  <div>
-    <div @click="browseNode(tagInfo.nodeId)" class="tagDisplay">
-      <i class="bi bi-boxes" v-if="tagInfo.nodeClass === 'Object'"></i>
-      <i class="bi bi-hexagon" v-if="tagInfo.nodeClass === 'Variable'"></i>
+  <div style="display:flex;flex-direction:column">
+    <div class="tagDisplay">
+      <i
+        class="bi bi-boxes"
+        v-if="tagInfo.nodeClass === 'Object'"
+        style="color: rgb(98, 141, 177)"
+      ></i>
+      <i
+        class="bi bi-hexagon"
+        v-if="tagInfo.nodeClass === 'Variable'"
+        style="color: rgb(194, 99, 207)"
+      ></i>
       <div class="nodeLabel">
         <label>Browse Name</label>
         <p>{{ tagInfo.browseName.name }}</p>
       </div>
       <div class="nodeLabel">
         <label>NodeId</label>
-        <p>{{ tagInfo.nodeId }}</p>
+        <p>{{ tagInfo.index }}</p>
+      </div>
+      <div class="nodeControls">
+        <input type="checkbox" v-if="tagInfo.nodeClass === 'Variable'" />
+        <i
+          class="bi bi-plus-square expander"
+          v-if="tagInfo.nodeClass === 'Object'"
+          @click="browseNode(tagInfo.nodeId, tagInfo.index)"
+        ></i>
       </div>
     </div>
     <tag-display
@@ -27,8 +43,12 @@ export default {
   },
   name: "tag-display",
   methods: {
-    browseNode(nodeId) {
-      this.$store.dispatch("browseNode", nodeId);
+    browseNode(nodeId,index) {
+      let payload = {
+        nodeId,
+        index
+      }
+      this.$store.dispatch("browseNode", payload);
     },
   },
 };
@@ -38,24 +58,18 @@ export default {
 .tagDisplay {
   background: rgb(78, 77, 77);
   color: white;
-  width: 30vw;
   font-size: 1.2rem;
   border-radius: 5px;
-  cursor: pointer;
   display: flex;
+  
+
   align-items: center;
 }
-.tagDisplay:hover {
-  border: 1px solid white;
-}
 
-.tagDisplay i {
+.tagDisplay > i {
   margin: 0 10px;
   font-size: 1.5rem;
-  color: rgb(181, 113, 236)
-
-
- 
+  color: white;
 }
 
 .nodeLabel {
@@ -76,5 +90,23 @@ export default {
   padding: 1px 10px;
   color: black;
   font-size: 0.9rem;
+}
+
+.nodeControls {
+  margin-left:auto;
+  margin-right: 2%
+}
+
+.nodeControls input {
+  width: 20px;
+  height: 20px;
+}
+
+.expander {
+  cursor: pointer;
+}
+
+.expander:hover {
+  font-size: 1.3rem;
 }
 </style>

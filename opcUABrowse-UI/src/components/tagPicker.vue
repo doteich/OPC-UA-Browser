@@ -7,6 +7,7 @@
         :key="tag.nodeId"
         :tagInfo="tag"
       ></tag-display>
+      <p>{{$store.state.tags}}</p>
     </div>
   </div>
 </template>

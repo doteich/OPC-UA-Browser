@@ -16,11 +16,52 @@ const store = createStore({
             state.opcConfig = payload
         },
         setTags(state, payload) {
-
+            let index = 0
             for (let tag of payload) {
+                tag["index"] = [index]
                 tag["childs"] = []
+                index += 1
             }
             state.tags = payload
+        },
+        setChildTags(state, payload) {
+
+            let parentIndex = [...payload.index]
+
+            let newIndex = 0
+            for (let tag of payload.data) {
+                tag["childs"] = []
+                tag["index"] = [...parentIndex]
+                tag.index.push(newIndex)
+                newIndex += 1
+            }
+
+
+
+            function findChild(branchArray, indexArr) {
+
+                let arr = [...indexArr]
+
+                let el = arr.shift()
+                console.log(el)
+                let branch = branchArray[el]
+                console.log(branch.nodeId)
+                if (arr.length > 0) {
+                    console.log("HALLO")
+                    findChild(branch.childs, arr)
+                } else {
+                    console.log(branch)
+                    branch.childs = payload.data
+
+                }
+            }
+
+            findChild(state.tags, parentIndex)
+
+
+
+
+
         }
     },
     getters: {
@@ -43,13 +84,17 @@ const store = createStore({
         },
         browseNode(context, payload) {
             let config = context.state.opcConfig
-            config.node = payload
+            config.node = payload.nodeId
 
             axios.get(`${urlPrefix}browse`, { params: config })
                 .then((res) => {
 
+                    let resPayload = {
+                        data: res.data.message,
+                        index: payload.index
+                    }
 
-                    context.commit("setTags", res.data.message)
+                    context.commit("setChildTags", resPayload)
                 })
                 .catch((err) => {
                     console.log(err)
