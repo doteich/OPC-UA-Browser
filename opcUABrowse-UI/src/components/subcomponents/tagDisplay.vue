@@ -1,6 +1,6 @@
 <template>
-  <div style="display:flex;flex-direction:column">
-    <div class="tagDisplay">
+  <div class="nodeContainer">
+    <div class="tagDisplay" :style="{marginLeft:calcWidth + '%'}">
       <i
         class="bi bi-boxes"
         v-if="tagInfo.nodeClass === 'Object'"
@@ -17,14 +17,19 @@
       </div>
       <div class="nodeLabel">
         <label>NodeId</label>
-        <p>{{ tagInfo.index }}</p>
+        <p>{{ tagInfo.nodeId }}</p>
       </div>
       <div class="nodeControls">
-        <input type="checkbox" v-if="tagInfo.nodeClass === 'Variable'" />
+        <input type="checkbox" v-if="tagInfo.nodeClass === 'Variable'" @change="toggleNode(tagInfo.nodeId,$event)"/>
         <i
           class="bi bi-plus-square expander"
-          v-if="tagInfo.nodeClass === 'Object'"
+          v-if="tagInfo.nodeClass === 'Object' && !tagInfo.childs.length"
           @click="browseNode(tagInfo.nodeId, tagInfo.index)"
+        ></i>
+         <i
+          class="bi bi-dash-square expander"
+          v-if="tagInfo.childs.length"
+          @click="collapseNode(tagInfo, tagInfo.index)"
         ></i>
       </div>
     </div>
@@ -42,26 +47,55 @@ export default {
     tagInfo: Object,
   },
   name: "tag-display",
+  computed: {
+    calcWidth() {
+      const arrLen = this.tagInfo.index.length;
+      let width = arrLen * 2;
+      return width
+    },
+  },
   methods: {
-    browseNode(nodeId,index) {
+    browseNode(nodeId, index) {
       let payload = {
         nodeId,
-        index
-      }
+        index,
+      };
       this.$store.dispatch("browseNode", payload);
     },
+    collapseNode(branch,index){
+      let payload = {
+         branch,
+        index,
+      };
+      this.$store.commit("collapseNode",payload)
+    },
+    toggleNode(nodeId,$event){
+
+      const checked = $event.target.checked
+        if(checked){
+          console.log("CHECK")
+        }else{
+          console.log("UNCHECKED")
+        }
+    }
   },
 };
 </script>
 
 <style>
+.nodeContainer{
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+ 
+}
+
 .tagDisplay {
   background: rgb(78, 77, 77);
   color: white;
   font-size: 1.2rem;
   border-radius: 5px;
   display: flex;
-  
 
   align-items: center;
 }
@@ -93,8 +127,8 @@ export default {
 }
 
 .nodeControls {
-  margin-left:auto;
-  margin-right: 2%
+  margin-left: auto;
+  margin-right: 2%;
 }
 
 .nodeControls input {

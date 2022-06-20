@@ -5,6 +5,7 @@
   <header>
     <h1>IEP</h1>
     <h2>OPC-UA Browser</h2>
+   
   </header>
   <router-view></router-view>
 </template>
