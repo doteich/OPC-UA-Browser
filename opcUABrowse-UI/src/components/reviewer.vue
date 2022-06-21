@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Konfiguration Überprüfen</h3>
-    <textarea v-model="completeConfig" disabled="true"></textarea>
+    <p>{{completeConfig}}</p>
   </div>
 </template>
 
@@ -9,7 +9,8 @@
 export default {
     computed:{
         completeConfig(){
-            return this.$store.getters
+            let config = this.$store.getters.configFileGetter
+            return config
         }
     }
 }

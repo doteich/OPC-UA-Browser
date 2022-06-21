@@ -56,9 +56,9 @@ export default {
   data() {
     return {
       url: null,
-      securityPolicy: null,
-      securityMode: null,
-      authType: null,
+      securityPolicy: "None",
+      securityMode: "None",
+      authType: "Anonymous",
       username: null,
       password: null,
       node:"RootFolder"

@@ -73,7 +73,7 @@ const store = createStore({
                 state.selectedTags.splice(itemIndex, 1);
             }
         },
-        setMethodConfig(state,payload){
+        setMethodConfig(state, payload) {
             state.methodConfig = payload
         }
     },
@@ -84,10 +84,12 @@ const store = createStore({
         configFileGetter(state) {
             let opcConfig = state.opcConfig
             let selectedTags = state.selectedTags
+            let methodConfig = state.methodConfig
 
             return {
                 opcConfig,
-                selectedTags
+                selectedTags,
+                methodConfig
             }
         }
     },
