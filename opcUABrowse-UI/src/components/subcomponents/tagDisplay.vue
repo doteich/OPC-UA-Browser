@@ -20,7 +20,7 @@
         <p>{{ tagInfo.nodeId }}</p>
       </div>
       <div class="nodeControls">
-        <input type="checkbox" v-if="tagInfo.nodeClass === 'Variable'" @change="toggleNode(tagInfo.nodeId,$event)"/>
+        <input type="checkbox" v-if="tagInfo.nodeClass === 'Variable'" @change="toggleNode(tagInfo.nodeId,tagInfo.browseName.name,$event)"/>
         <i
           class="bi bi-plus-square expander"
           v-if="tagInfo.nodeClass === 'Object' && !tagInfo.childs.length"
@@ -69,13 +69,18 @@ export default {
       };
       this.$store.commit("collapseNode",payload)
     },
-    toggleNode(nodeId,$event){
+    toggleNode(nodeId,name,$event){
 
       const checked = $event.target.checked
+
+      const payload = {
+        nodeId,
+        name
+      }
         if(checked){
-          console.log("CHECK")
+          this.$store.commit("addSelectedNode",payload)
         }else{
-          console.log("UNCHECKED")
+          this.$store.commit("dropSelectedNode",payload)
         }
     }
   },
@@ -134,6 +139,7 @@ export default {
 .nodeControls input {
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .expander {

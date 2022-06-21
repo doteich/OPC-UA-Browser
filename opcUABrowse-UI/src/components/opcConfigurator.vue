@@ -83,28 +83,6 @@ export default {
 </script>
 
 
-<style scoped>
-.inputClass {
-  display: flex;
-  flex-direction: column;
-  
-}
+<style>
 
-.inputGroup {
-  display: flex;
-  flex-direction: column;
-  
-}
-
-.inputGroup div{
-  display: flex;
-}
-
-.inputGroup h4{
-  border-bottom: 1px solid white;
-}
-
-.inputGroup div > *{
-  margin-right: 1vw;
-}
 </style>

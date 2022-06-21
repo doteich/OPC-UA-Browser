@@ -11,6 +11,15 @@
     <section>
       <h2>3</h2>
       <tag-picker class="component"></tag-picker>
+      
+    </section>
+    <section>
+      <h2>4</h2>
+      <method-configurator class="component"></method-configurator>
+    </section>
+    <section>
+      <h2>5</h2>
+      <reviewer class="component"></reviewer>
     </section>
   </article>
 </template>
@@ -19,9 +28,13 @@
 import locationPicker from "../components/locationPicker.vue";
 import OpcConfigurator from "../components/opcConfigurator.vue";
 import tagPicker from "../components/tagPicker.vue";
+import methodConfigurator from "../components/methodConfigurator.vue"
+
+import Reviewer from '../components/reviewer.vue';
+
 
 export default {
-  components: { locationPicker, OpcConfigurator, tagPicker },
+  components: { locationPicker, OpcConfigurator, tagPicker, methodConfigurator, Reviewer },
 };
 </script>
 

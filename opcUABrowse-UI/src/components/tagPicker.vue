@@ -7,7 +7,7 @@
         :key="tag.nodeId"
         :tagInfo="tag"
       ></tag-display>
-
+      <button>Bestätigen</button>
     </div>
   </div>
 </template>
@@ -22,6 +22,9 @@ export default {
     setTags() {
       return this.$store.getters.tagGetter;
     },
+    displayConfig(){
+      return this.$store.getters.configFileGetter
+    }
   },
 };
 </script>

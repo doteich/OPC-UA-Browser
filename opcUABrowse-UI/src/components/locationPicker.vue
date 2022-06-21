@@ -6,7 +6,7 @@
         <option>BNP Rheine</option>
         <option>Kepware Simulation</option>
       </select>
-      <button>OK</button>
+      <button>Bestätigen</button>
     </div>
   </div>
 </template>
