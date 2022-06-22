@@ -72,6 +72,7 @@ export default {
         securityMode: this.securityMode,
         authType:this.authType,
         username:this.username,
+        password: this.password,
         node:this.node
 
       };

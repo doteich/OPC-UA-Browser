@@ -1,7 +1,7 @@
 const opcua = require("node-opcua")
 
 
-exports.browseOPCUA = (async(req, res, next) => {
+exports.browseOPCUA = (async (req, res, next) => {
 
 
     const endpointURL = req.query.url
@@ -12,7 +12,33 @@ exports.browseOPCUA = (async(req, res, next) => {
     const userName = req.query.username
     const password = req.query.password
 
-    console.log(req.query)
+    let auth = null
+
+    if (authentication === "User & Password") {
+        auth = { userName: userName, password: password }
+    }
+
+    let browseObjects = {
+        nodeId: node,
+        referenceTypeId: 33,
+        browseDirection: opcua.BrowseDirection.Forward,
+        includeSubtypes: true,
+        nodeClassMask: opcua.NodeClass.Object,
+        resultMask: 63
+
+    }
+
+    let browseVars = {
+        nodeId: node,
+        referenceTypeId: 33,
+        browseDirection: opcua.BrowseDirection.Forward,
+        includeSubtypes: true,
+        nodeClassMask: opcua.NodeClass.Variables,
+        resultMask: 63
+
+    }
+
+
 
     async function browse() {
         try {
@@ -25,19 +51,16 @@ exports.browseOPCUA = (async(req, res, next) => {
 
             await client.connect(endpointURL);
 
-            const session = await client.createSession();
+            const session = await client.createSession(auth);
 
-            /* session.browse(node, (err, browseResult) => {
-                if (!err) {
-                    console.log(browseResult.references.toString())
-                } else {
-                    const error = new Error("Browse Error")
-                    error.statusCode = 500;
-                    next(error);
+            const browsedNodes = await session.browse(browseObjects)
+            const browsedVars = await session.browse(browseVars)
+
+            browsedVars.references.forEach((el) => {
+                if(el.nodeClass > 1){
+                    browsedNodes.references.push(el)
                 }
-            }) */
-
-            const browsedNodes = await session.browse(node)
+            })
 
             await session.close();
             await client.disconnect();
