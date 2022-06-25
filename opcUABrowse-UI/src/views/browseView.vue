@@ -1,6 +1,6 @@
 <template>
   <article class="browser">
-    <p>{{ displayedComponents }}</p>
+ 
     <section>
       <h2>1</h2>
       <location-picker class="component"></location-picker>
