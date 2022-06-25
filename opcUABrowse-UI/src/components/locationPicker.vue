@@ -6,13 +6,19 @@
         <option>BNP Rheine</option>
         <option>Kepware Simulation</option>
       </select>
-      <button>Bestätigen</button>
+      <button @click="displayNextComp('opcConfigurator')">Bestätigen</button>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods:{
+    displayNextComp(component){
+      this.$store.commit("displayComponent",component)
+    }
+  }
+};
 </script>
 
 <style>

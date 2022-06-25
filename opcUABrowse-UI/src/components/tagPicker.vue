@@ -7,7 +7,7 @@
         :key="tag.nodeId"
         :tagInfo="tag"
       ></tag-display>
-      <button>Bestätigen</button>
+      <button @click="displayNextComp('methodConfigurator')">Bestätigen</button>
     </div>
   </div>
 </template>
@@ -26,6 +26,11 @@ export default {
       return this.$store.getters.configFileGetter
     }
   },
+   methods:{
+    displayNextComp(component){
+      this.$store.commit("displayComponent",component)
+    }
+  }
 };
 </script>
 

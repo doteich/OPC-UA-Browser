@@ -14,7 +14,7 @@
         <label>Beschreibung</label>
         <textarea v-model="description"></textarea>
       </div>
-      <button @click.prevent="setMethodData()">Bestätigen</button>
+      <button @click.prevent="setMethodData('reviewer')">Bestätigen</button>
     </form>
   </div>
 </template>
@@ -29,13 +29,15 @@ export default {
     };
   },
   methods:{
-    setMethodData(){
+    setMethodData(component){
       let payload = {
         subInterval : this.subInterval,
         name: this.name,
         description: this.description
       }
       this.$store.commit("setMethodConfig",payload)
+       this.$store.commit("displayComponent",component)
+      
     }
   }
 };

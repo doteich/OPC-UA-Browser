@@ -24,14 +24,12 @@ header {
   flex-direction: column;
   align-items: center;
   border-bottom: white 1px solid;
-}
+  
+  }
 
 header > * {
   font-family: monospace;
-  background: -webkit-linear-gradient(315deg, #94a7dd 25%, #a116c4);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: white;
   font-weight: 1000;
 }
 
@@ -65,7 +63,7 @@ input {
 
 textarea {
   background: rgba(222, 222, 223, 0.212);
-  height:4.8vh;
+  height: 4.8vh;
   min-width: 15vw;
   padding: 10px;
   border-radius: 5px;
@@ -85,7 +83,7 @@ button {
   font-size: 1.05rem;
 }
 button:active {
-  background: -webkit-linear-gradient(315deg, #94a7dd 25%, #a116c4);
+  transform: scale(0.95);
 }
 
 .inputClass {
