@@ -26,13 +26,7 @@ const setupSubscription = async(session) => {
     };
     const sub = await session.createSubscription2(subscriptionOptions)
 
-
-    sub.on("started", () => {
-        console.log(
-            "subscription started for 2 seconds - subscriptionId=",
-            the_subscription.subscriptionId
-        );
-    })
+    sub.on("started", () => { console.log("HALLO WELT") })
     sub.on("keepalive", function() {
         console.log("subscription keepalive");
     })
@@ -40,30 +34,13 @@ const setupSubscription = async(session) => {
         console.log("terminated");
     });
 
-    const itemToMonitor = {
-        nodeId: opcua.resolveNodeId("ns=2;s=Kanal1.Gerät1.String"),
-        attributeId: opcua.AttributeIds.Value
-    };
-    const monitoringParamaters = {
-        samplingInterval: 100,
-        discardOldest: true,
-        queueSize: 10
-    };
-
-
-    const item = await sub.monitor(itemToMonitor, monitoringParamaters, opcua.TimestampsToReturn.Both)
-    item.on("changed", function(dataValue) {
-        console.log(
-            "monitored item changed:  % free mem = ",
-            dataValue.value.value
-        );
-    })
+    return sub
 }
 
-const monitorItems = async(sub) => {
+const monitorItems = async(session, sub, item) => {
 
     const itemToMonitor = {
-        nodeId: opcua.resolveNodeId("ns=2;s=Kanal1.Gerät1.Tag 1"),
+        nodeId: opcua.resolveNodeId(item),
         attributeId: opcua.AttributeIds.Value
     };
     const monitoringParamaters = {
@@ -75,9 +52,15 @@ const monitorItems = async(sub) => {
 
     try {
 
-        let val = await sub.monitor(itemToMonitor, monitoringParamaters, opcua.TimestampsToReturn.Both)
+        let item = await sub.monitor(itemToMonitor, monitoringParamaters, opcua.TimestampsToReturn.Both)
+        item.on("changed", function(dataValue) {
+            console.log(
+                "monitored item changed:  % free mem = ",
+                dataValue.value.value
+            );
+        })
 
-        console.log(val)
+
     } catch (err) {
         console.log(err)
     }
@@ -94,11 +77,13 @@ async function main() {
     await client.connect(endpointURL);
 
     const newSession = await createSession(client)
+    const newSubscription = await setupSubscription(newSession)
 
-    await setupSubscription(newSession)
+    const items = config.selectedTags
 
-
-
+    for (let item of items) {
+        await monitorItems(newSession, newSubscription, item.nodeId)
+    }
 
 
 
