@@ -1,11 +1,10 @@
 const opcua = require("node-opcua")
-const config = { "opcConfig": { "url": "opc.tcp://127.0.0.1:49320", "securityPolicy": "None", "securityMode": "None", "authType": "Anonymous", "username": null, "password": null, "node": "ns=2;s=Kanal1.Gerät1" }, "selectedTags": [{ "nodeId": "ns=2;s=Kanal1.Gerät1.Tag 1", "name": "Tag 1" }, { "nodeId": "ns=2;s=Kanal1.Gerät1.Tag 2", "name": "Tag 2" }, { "nodeId": "ns=2;s=Kanal1.Gerät1.Test Tag", "name": "Test Tag" }], "methodConfig": { "subInterval": 8, "name": "Test Config", "description": "Hallo Welt" } }
-
+const config = { "opcConfig": { "url": "opc.tcp://pe2-popc-p01.meg-gruppe.net:48400", "securityPolicy": "None", "securityMode": "None", "authType": "Anonymous", "username": null, "password": null, "node": "ns=2;s=Minebea_Waage.Testing Scale.CurrentWeight" }, "selectedTags": [{ "nodeId": "ns=2;s=Minebea_Waage.Testing Scale.CurrentWeight.Gross", "name": "Gross" }, { "nodeId": "ns=2;s=Minebea_Waage.Testing Scale.CurrentWeight.Net", "name": "Net" }, { "nodeId": "ns=2;s=Minebea_Waage.Testing Scale.CurrentWeight.Tare", "name": "Tare" }], "methodConfig": { "subInterval": 10, "name": "Test", "description": "Test" } }
 const endpointURL = config.opcConfig.url
 
 
 
-const createSession = async(client) => {
+const createSession = async (client) => {
     try {
 
         const session = await client.createSession();
@@ -15,7 +14,7 @@ const createSession = async(client) => {
     }
 }
 
-const setupSubscription = async(session) => {
+const setupSubscription = async (session) => {
 
     const subscriptionOptions = {
         maxNotificationsPerPublish: 1000,
@@ -24,20 +23,23 @@ const setupSubscription = async(session) => {
         requestedMaxKeepAliveCount: 47,
         requestedPublishingInterval: 1000
     };
-    const sub = await session.createSubscription2(subscriptionOptions)
+    const sub = await opcua.ClientSubscription.create(session, subscriptionOptions)
 
     sub.on("started", () => { console.log("HALLO WELT") })
-    sub.on("keepalive", function() {
+    sub.on("keepalive", function () {
         console.log("subscription keepalive");
     })
-    sub.on("terminated", function() {
+    sub.on("terminated", function () {
         console.log("terminated");
     });
 
     return sub
 }
 
-const monitorItems = async(session, sub, item) => {
+const monitorItems = async (session, sub, item) => {
+
+    console.log("LO")
+    
 
     const itemToMonitor = {
         nodeId: opcua.resolveNodeId(item),
@@ -52,14 +54,16 @@ const monitorItems = async(session, sub, item) => {
 
     try {
 
-        let item = await sub.monitor(itemToMonitor, monitoringParamaters, opcua.TimestampsToReturn.Both)
-        item.on("changed", function(dataValue) {
+        let item = await opcua.ClientMonitoredItem.create(sub, itemToMonitor, monitoringParamaters, opcua.TimestampsToReturn.Both)
+       
+        item.on("changed", function (dataValue) {
             console.log(
-                "monitored item changed:  % free mem = ",
+                itemToMonitor.nodeId.value, ":",
                 dataValue.value.value
             );
         })
 
+        
 
     } catch (err) {
         console.log(err)
@@ -68,28 +72,32 @@ const monitorItems = async(session, sub, item) => {
 
 
 async function main() {
+    try {
+        const client = opcua.OPCUAClient.create({
+            endpointMustExist: false,
+            securityMode: config.opcConfig.securityMode,
+            securityPolicy: config.opcConfig.securityPolicy
+        });
 
-    const client = opcua.OPCUAClient.create({
-        endpointMustExist: false,
-        securityMode: config.opcConfig.securityMode,
-        securityPolicy: config.opcConfig.securityPolicy
-    });
-    await client.connect(endpointURL);
+        await client.connect(endpointURL);
 
-    const newSession = await createSession(client)
-    const newSubscription = await setupSubscription(newSession)
+        const newSession = await createSession(client)
+        const newSubscription = await setupSubscription(newSession)
 
-    const items = config.selectedTags
+        const items = config.selectedTags
 
-    for (let item of items) {
-        await monitorItems(newSession, newSubscription, item.nodeId)
+        for (let item of items) {
+           await monitorItems(newSession, newSubscription, item.nodeId)
+        }
+
+        newSubscription.terminate();
+
+        //await newSession.close();
+        //await client.disconnect();
     }
-
-
-
-    //await newSession.close();
-    //await client.disconnect();
-
+    catch(err){
+        console.log(err)
+    }
 }
 
 
