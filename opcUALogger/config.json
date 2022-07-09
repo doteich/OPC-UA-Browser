@@ -1,0 +1,25 @@
+{
+    "opcConfig": {
+        "url": "opc.tcp://127.0.0.1:49320",
+        "securityPolicy": "None",
+        "securityMode": "None",
+        "authType": "Anonymous",
+        "username": null,
+        "password": null,
+        "node": "ns=2;s=Kanal1.Gerät1"
+    },
+    "selectedTags": [{
+            "nodeId": "ns=2;s=Kanal1.Gerät1.RAMPER",
+            "name": "RAMPER"
+        },
+        {
+            "nodeId": "ns=2;s=Kanal1.Gerät1.Test Tag",
+            "name": "Test Tag"
+        }
+    ],
+    "methodConfig": {
+        "subInterval": 1,
+        "name": null,
+        "description": null
+    }
+}
