@@ -1,7 +1,7 @@
 const opcua = require("node-opcua")
 
 
-exports.browseOPCUA = (async (req, res, next) => {
+exports.browseOPCUA = (async(req, res, next) => {
 
 
     const endpointURL = req.query.url
@@ -39,7 +39,6 @@ exports.browseOPCUA = (async (req, res, next) => {
     }
 
 
-
     async function browse() {
         try {
 
@@ -57,7 +56,7 @@ exports.browseOPCUA = (async (req, res, next) => {
             const browsedVars = await session.browse(browseVars)
 
             browsedVars.references.forEach((el) => {
-                if(el.nodeClass > 1){
+                if (el.nodeClass > 1) {
                     browsedNodes.references.push(el)
                 }
             })
