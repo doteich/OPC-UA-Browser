@@ -16,13 +16,17 @@ const store = createStore({
                 tagPicker: false,
                 methodConfigurator: false,
                 reviewer: false,
-            }
+            },
+            endpointError: null
         }
     },
     // eslint-disable-next-line prettier/prettier
     mutations: {
         setConfig(state, payload) {
             state.opcConfig = payload
+        },
+        setErrorMessage(state, payload) {
+            state.endpointError = payload
         },
         setTags(state, payload) {
             let index = 0
@@ -104,6 +108,9 @@ const store = createStore({
         },
         displayedComponentsGetter(state) {
             return state.displayedItems
+        },
+        getConfigError(state) {
+            return state.endpointError
         }
     },
     actions: {
@@ -113,10 +120,11 @@ const store = createStore({
                 .then((res) => {
                     context.commit("setConfig", payload)
                     context.commit("setTags", res.data.message)
+                    context.commit("setErrorMessage", null)
                     context.commit("displayComponent", "tagPicker")
                 })
                 .catch((err) => {
-                    console.log(err)
+                    context.commit("setErrorMessage", "Keine Verbindung zum Endpunkt möglich - Konfiguration überprüfen")
                 })
         },
         browseNode(context, payload) {
