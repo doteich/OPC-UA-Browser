@@ -14,28 +14,34 @@
       <h2>2</h2>
       <tag-picker class="component"></tag-picker>
     </section>
-    <section v-if="displayedComponents.methodConfigurator">
+    <section>
       <h2>3</h2>
+      <name-config class="component"></name-config>
+    </section>
+    <section v-if="displayedComponents.methodConfigurator">
+      <h2>4</h2>
       <method-configurator class="component"></method-configurator>
     </section>
     <section v-if="displayedComponents.reviewer">
-      <h2>4</h2>
+      <h2>5</h2>
       <reviewer class="component"></reviewer>
     </section>
   </article>
 </template>
 
 <script>
-import locationPicker from "../components/locationPicker.vue";
+//import locationPicker from "../components/locationPicker.vue";
 import OpcConfigurator from "../components/opcConfigurator.vue";
 import tagPicker from "../components/tagPicker.vue";
 import methodConfigurator from "../components/methodConfigurator.vue";
+import nameConfig from "../components/nameConfig.vue"
 
 import Reviewer from "../components/reviewer.vue";
 
 export default {
   components: {
-    locationPicker,
+    //locationPicker,
+    nameConfig,
     OpcConfigurator,
     tagPicker,
     methodConfigurator,

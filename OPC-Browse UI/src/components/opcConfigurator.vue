@@ -92,11 +92,12 @@ export default {
 <style scoped>
 
 .error{
-  border-radius: 20px;
+  border-radius: 5px;
   border: 1px solid white;
   width: 50%;
   margin-left: 1%;
-  background: rgba(231, 7, 7, 0.527);
+  
+  background: rgba(139, 8, 8, 0.76);
   color:white;
 }
 

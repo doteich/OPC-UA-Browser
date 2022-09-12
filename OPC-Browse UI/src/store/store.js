@@ -111,6 +111,9 @@ const store = createStore({
         },
         getConfigError(state) {
             return state.endpointError
+        },
+        getSelectedTags(state) {
+            return state.selectedTags
         }
     },
     actions: {
