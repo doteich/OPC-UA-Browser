@@ -1,24 +1,25 @@
 <template>
   <article class="browser">
- 
+    <!--
     <section>
       <h2>1</h2>
       <location-picker class="component"></location-picker>
     </section>
-    <section v-if="displayedComponents.opcConfigurator">
-      <h2>2</h2>
+    --> 
+    <section>
+      <h2>1</h2>
       <opc-configurator class="component"></opc-configurator>
     </section>
     <section v-if="displayedComponents.tagPicker">
-      <h2>3</h2>
+      <h2>2</h2>
       <tag-picker class="component"></tag-picker>
     </section>
     <section v-if="displayedComponents.methodConfigurator">
-      <h2>4</h2>
+      <h2>3</h2>
       <method-configurator class="component"></method-configurator>
     </section>
     <section v-if="displayedComponents.reviewer">
-      <h2>5</h2>
+      <h2>4</h2>
       <reviewer class="component"></reviewer>
     </section>
   </article>

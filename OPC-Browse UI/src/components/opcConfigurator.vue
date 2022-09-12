@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>OPC UA Konfiguration</h3>
+    <h3>OPC UA Endpunkt Konfiguration</h3>
     <form>
       <div class="inputClass">
         <label>OPC Endpunkt</label>
@@ -47,7 +47,7 @@
 
       <button @click.prevent="connectToOPC()">Verbinden</button>
     </form>
-
+    <p class="error" v-if="error"><i  class="bi bi-exclamation-diamond"></i>{{error}}</p>
   </div>
 </template>
 
@@ -63,6 +63,11 @@ export default {
       password: null,
       node:"RootFolder"
     };
+  },
+  computed:{
+    error(){
+      return this.$store.getters.getConfigError
+    }
   },
   methods: {
     connectToOPC() {
@@ -84,6 +89,15 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+
+.error{
+  border-radius: 20px;
+  border: 1px solid white;
+  width: 50%;
+  margin-left: 1%;
+  background: rgba(231, 7, 7, 0.527);
+  color:white;
+}
 
 </style>
