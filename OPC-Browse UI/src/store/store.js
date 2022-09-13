@@ -89,7 +89,15 @@ const store = createStore({
         },
         displayComponent(state, payload) {
             state.displayedItems[payload] = true
+        },
+        updateTagName(state, payload) {
+            state.selectedTags.forEach((tag) => {
+                if (tag.nodeId === payload.nodeId) {
+                    tag.name = payload.name
+                }
+            })
         }
+
     },
     getters: {
         tagGetter(state) {
@@ -126,7 +134,7 @@ const store = createStore({
                     context.commit("setErrorMessage", null)
                     context.commit("displayComponent", "tagPicker")
                 })
-                .catch((err) => {
+                .catch(() => {
                     context.commit("setErrorMessage", "Keine Verbindung zum Endpunkt möglich - Konfiguration überprüfen")
                 })
         },
