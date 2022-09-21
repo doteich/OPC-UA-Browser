@@ -12,7 +12,7 @@
         <input :value="tag.name" @change="updateTagNames(tag,$event.target.value)" />
       </div>
     </div>
-    <button @click="updateTagNames()">Bestätigen</button>
+    <button @click.prevent="setNames('reviewer')">Bestätigen</button>
   </div>
 </template>
 
@@ -33,6 +33,9 @@ export default {
     updateTagNames(tag, newName){
       tag.name = newName
       this.$store.commit("updateTagName", tag)
+    },
+    setNames(component){
+      this.$store.commit("methodConfigurator",component)
     }
   }
 };

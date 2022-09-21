@@ -24,30 +24,51 @@
         </select>
       </div>
       <div class="inputGroup">
-        <h4 v-if="authType==='User & Password'">Auth</h4>
-      <div>
-        <div class="inputClass">
-          <label>Authentifizierung</label>
-          <select v-model="authType">
-            <option>Anonymous</option>
-            <option>User & Password</option>
-          </select>
-        </div>
-          <div class="inputClass" v-if="authType==='User & Password'">
+        <h4 v-if="authType === 'User & Password'">Auth</h4>
+        <div>
+          <div class="inputClass">
+            <label>Authentifizierung</label>
+            <select v-model="authType">
+              <option>Anonymous</option>
+              <option>User & Password</option>
+            </select>
+          </div>
+          <div class="inputClass" v-if="authType === 'User & Password'">
             <label>Username</label>
             <input v-model="username" />
           </div>
 
-          <div class="inputClass" v-if="authType==='User & Password'">
+          <div class="inputClass" v-if="authType === 'User & Password'">
             <label>Passwort</label>
-            <input type="password" v-model="password"/>
+            <input type="password" v-model="password" />
           </div>
         </div>
       </div>
 
       <button @click.prevent="connectToOPC()">Verbinden</button>
     </form>
-    <p class="error" v-if="error"><i  class="bi bi-exclamation-diamond"></i>{{error}}</p>
+    <p class="error" v-if="error">
+      <i class="bi bi-exclamation-diamond"></i>{{ error }}
+    </p>
+    <p
+      class="warning"
+      v-if="securityPolicy != 'None' || securityMode != 'None'"
+    >
+      <i class="bi bi-exclamation-triangle"></i>Die gewählte Richtlinie oder
+      Modus erfordern ein Zertifikat und Private Key
+    </p>
+    <div
+      class="verticalInput"
+      v-if="securityPolicy != 'None' || securityMode != 'None'"
+    >
+      <label>Autogen Zertifikat & Private Key</label>
+      <input
+        type="checkbox"
+        value="checked"
+        class="checkbox"
+        v-model="autoGenCert"
+      />
+    </div>
   </div>
 </template>
 
@@ -61,13 +82,14 @@ export default {
       authType: "Anonymous",
       username: null,
       password: null,
-      node:"RootFolder"
+      autoGenCert: false,
+      node: "RootFolder",
     };
   },
-  computed:{
-    error(){
-      return this.$store.getters.getConfigError
-    }
+  computed: {
+    error() {
+      return this.$store.getters.getConfigError;
+    },
   },
   methods: {
     connectToOPC() {
@@ -75,11 +97,11 @@ export default {
         url: this.url,
         securityPolicy: this.securityPolicy,
         securityMode: this.securityMode,
-        authType:this.authType,
-        username:this.username,
+        autoGenCert: this.autoGenCert,
+        authType: this.authType,
+        username: this.username,
         password: this.password,
-        node:this.node
-
+        node: this.node,
       };
 
       this.$store.dispatch("browse", payload);
@@ -90,15 +112,31 @@ export default {
 
 
 <style scoped>
-
-.error{
+.error {
   border-radius: 5px;
   border: 1px solid white;
   width: 50%;
   margin-left: 1%;
-  
   background: rgba(139, 8, 8, 0.76);
-  color:white;
+  color: white;
 }
 
+.warning {
+  border-radius: 5px;
+  border: 1px solid white;
+  width: 50%;
+  margin-left: 1%;
+  border: 2px solid rgb(248, 182, 0);
+  color: white;
+}
+
+.verticalInput {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  height: 20px;
+  width: 20px;
+}
 </style>

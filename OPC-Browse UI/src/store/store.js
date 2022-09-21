@@ -14,6 +14,7 @@ const store = createStore({
                 locationPicker: true,
                 opcConfigurator: false,
                 tagPicker: false,
+                nameConfig: false, 
                 methodConfigurator: false,
                 reviewer: false,
             },

@@ -63,7 +63,7 @@ input {
 
 textarea {
   background: rgba(222, 222, 223, 0.212);
-  height: 4.8vh;
+  height: 3.5vh;
   min-width: 15vw;
   padding: 10px;
   border-radius: 5px;
@@ -89,6 +89,8 @@ button:active {
 .inputClass {
   display: flex;
   flex-direction: column;
+  align-content: flex-end;
+ 
 }
 
 .inputGroup {

@@ -5,7 +5,7 @@
       <h2>1</h2>
       <location-picker class="component"></location-picker>
     </section>
-    --> 
+    -->
     <section>
       <h2>1</h2>
       <opc-configurator class="component"></opc-configurator>
@@ -14,7 +14,7 @@
       <h2>2</h2>
       <tag-picker class="component"></tag-picker>
     </section>
-    <section>
+    <section v-if="displayedComponents.nameConfig">
       <h2>3</h2>
       <name-config class="component"></name-config>
     </section>
@@ -34,7 +34,7 @@
 import OpcConfigurator from "../components/opcConfigurator.vue";
 import tagPicker from "../components/tagPicker.vue";
 import methodConfigurator from "../components/methodConfigurator.vue";
-import nameConfig from "../components/nameConfig.vue"
+import nameConfig from "../components/nameConfig.vue";
 
 import Reviewer from "../components/reviewer.vue";
 
@@ -109,7 +109,7 @@ section h3 {
     opacity: 0%;
   }
   to {
-    opacity:100%;
+    opacity: 100%;
   }
 }
 </style>
