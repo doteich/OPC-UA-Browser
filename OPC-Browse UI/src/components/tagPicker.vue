@@ -7,7 +7,7 @@
         :key="tag.nodeId"
         :tagInfo="tag"
       ></tag-display>
-      <button @click="displayNextComp('methodConfigurator')">Bestätigen</button>
+      <button @click="displayNextComp('nameConfig')">Bestätigen</button>
     </div>
   </div>
 </template>
