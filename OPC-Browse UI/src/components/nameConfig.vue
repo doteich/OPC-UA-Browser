@@ -26,14 +26,14 @@ export default {
   computed:{
     getTags(){
     
-        return this.$store.getters.getSelectedTags;
+      return this.$store.getters.getSelectedTags;
     }
-  },
+    },
   methods:{
     updateTagNames(tag, newName){
       tag.name = newName
       this.$store.commit("updateTagName", tag)
-    },
+  },
     setNames(component){
       this.$store.commit("methodConfigurator",component)
     }
@@ -65,6 +65,6 @@ export default {
 
 .horizontalInput input {
   width: 200px;
- height: 2vh;
+  height: 2vh;
 }
 </style>
