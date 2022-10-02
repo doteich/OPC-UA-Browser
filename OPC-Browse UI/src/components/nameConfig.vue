@@ -37,6 +37,7 @@ export default {
       tags: null,
     };
   },
+
   computed: {
     getTags() {
       return this.$store.getters.getSelectedTags;
@@ -51,6 +52,7 @@ export default {
       this.$store.commit("displayComponent", component);
     },
   },
+
 };
 </script>
 
