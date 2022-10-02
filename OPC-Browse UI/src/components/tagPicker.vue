@@ -28,6 +28,7 @@ export default {
   },
    methods:{
     displayNextComp(component){
+      this.$store.dispatch("readNodes")
       this.$store.commit("displayComponent",component)
     }
   }

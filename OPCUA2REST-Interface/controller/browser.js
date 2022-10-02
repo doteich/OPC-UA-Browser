@@ -52,6 +52,7 @@ exports.browseOPCUA = (async(req, res, next) => {
 
             const session = await client.createSession(auth);
 
+
             const browsedNodes = await session.browse(browseObjects)
             const browsedVars = await session.browse(browseVars)
 
@@ -64,6 +65,7 @@ exports.browseOPCUA = (async(req, res, next) => {
             await session.close();
             await client.disconnect();
 
+            console.log(browsedNodes.toString())
             return browsedNodes.references
 
         } catch (err) {
@@ -76,7 +78,6 @@ exports.browseOPCUA = (async(req, res, next) => {
 
     browse()
         .then((result) => {
-            console.log(result)
             res.status(200).json({
                 message: result
             })

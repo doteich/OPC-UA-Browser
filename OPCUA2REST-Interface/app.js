@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
 
-const browseRoutes = require("./routes/browseRoutes")
-
-
+const browseRoutes = require("./routes/routes")
 
 app.use(express.json());
 
