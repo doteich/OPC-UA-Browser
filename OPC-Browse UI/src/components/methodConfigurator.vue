@@ -15,7 +15,7 @@
         <input type="text" v-model="targetURL" placeholder="https://URL" />
       </div>
       <div class="inputClass">
-        <label>Weiterleitung an Metrics-Endpunkt</label>
+        <label>Bereitstellung als Promentheus Metrics</label>
        <input type="checkbox" class="checkbox" value="metrics" v-model="metrics">
       </div>
       <div class="inputClass">
