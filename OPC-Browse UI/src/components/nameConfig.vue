@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Anzeigenamen</h3>
-
+    <p class="refresher" @click="refetchOPCData()"><i class="bi bi-arrow-clockwise"></i>Refresh</p>
     <div class="nameDisplay" v-for="tag in getTags" :key="tag.nodeId">
       <div class="nodeLabel">
         <label>NodeId</label>
@@ -26,7 +26,6 @@
     <button @click.prevent="displayNextComp('methodConfigurator')">
       Bestätigen
     </button>
-    <p>{{ getTags }}</p>
   </div>
 </template>
 
@@ -51,17 +50,30 @@ export default {
     displayNextComp(component) {
       this.$store.commit("displayComponent", component);
     },
+    refetchOPCData(){
+      this.$store.dispatch("readNodes")
+    }
   },
 
 };
 </script>
 
 <style>
+.refresher{
+  cursor: pointer;
+  border: 1px solid white;
+  width: 10vw;
+  border-radius: 5px;
+  text-align: center;
+  background: rgb(56, 55, 55);
+  color:white
+}
+
+
 .nameDisplay {
   display: flex;
   align-items: center;
   border: 1px solid white;
-  justify-content: flex-start;
   border-radius: 5px;
   height: 5vh;
   padding-top: 5px;
@@ -71,16 +83,20 @@ export default {
   display: flex;
   align-items: center;
   width: 33%;
+  margin-left: auto !important;
+  
 }
+ 
 
 .horizontalInput label {
   color: white;
   font-weight: bold;
   margin-right: 10px;
+  
 }
 
 .horizontalInput input {
   width: 200px;
-  height: 2vh;
+  
 }
 </style>

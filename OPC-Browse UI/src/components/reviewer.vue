@@ -3,7 +3,6 @@
     <h3>Konfiguration Speichern und Abschicken</h3>
     <button @click="saveAsJson()">Konfiguration Lokal Speichern</button>
     <button>Abschicken</button>
-    <p>{{ completeConfig }}</p>
   </div>
 </template>
 

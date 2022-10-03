@@ -3,8 +3,8 @@
 
 <template>
   <header>
-    <h1>IEP</h1>
-    <h2>OPC-UA Browser</h2>
+    <img src="./assets/iep-logo-transparent.png">
+    <h2>IEP OPC-UA Logging Tools</h2>
   </header>
   <router-view></router-view>
 </template>
@@ -21,25 +21,23 @@
 
 header {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  border-bottom: white 1px solid;
-  
+  box-shadow: 0px 6px 10px 1px #000000;
   }
 
-header > * {
-  font-family: monospace;
+header h2{
+  font-family:monospace;
   color: white;
   font-weight: 1000;
+  font-size: 3em;
+  margin-left: 5vw;
+}
+header img{
+  width: 200px;
+  margin-left: 2vw;
 }
 
-header h1 {
-  font-size: 3rem;
-}
 
-header h2 {
-  font-size: 2.5rem;
-}
 
 select {
   background: rgba(222, 222, 223, 0.212);
@@ -109,4 +107,32 @@ button:active {
 .inputGroup div > * {
   margin-right: 1vw;
 }
+
+.error {
+  border-radius: 5px;
+  border: 1px solid white;
+  width: 50%;
+  margin-left: 1%;
+  background: rgba(139, 8, 8, 0.76);
+  color: white;
+}
+
+.warning {
+  border-radius: 5px;
+  border: 1px solid white;
+  width: 50%;
+  margin-left: 1%;
+  border: 2px solid rgb(248, 182, 0);
+  color: white;
+}
+
+.info {
+  border-radius: 5px;
+  border: 1px solid white;
+  width: 50%;
+  margin-left: 1%;
+  border: 2px solid rgb(1, 174, 255);
+  color: white;
+}
+
 </style>
