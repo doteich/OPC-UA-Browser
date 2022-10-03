@@ -112,23 +112,6 @@ export default {
 
 
 <style scoped>
-.error {
-  border-radius: 5px;
-  border: 1px solid white;
-  width: 50%;
-  margin-left: 1%;
-  background: rgba(139, 8, 8, 0.76);
-  color: white;
-}
-
-.warning {
-  border-radius: 5px;
-  border: 1px solid white;
-  width: 50%;
-  margin-left: 1%;
-  border: 2px solid rgb(248, 182, 0);
-  color: white;
-}
 
 .verticalInput {
   display: flex;

@@ -22,6 +22,10 @@
       <h2>4</h2>
       <method-configurator class="component"></method-configurator>
     </section>
+    <section v-if="displayedComponents.metricsConfigurator">
+      <h2> <i class="bi bi-speedometer"></i></h2>
+      <metrics-configurator class="component"></metrics-configurator>
+    </section>
     <section v-if="displayedComponents.reviewer">
       <h2>5</h2>
       <reviewer class="component"></reviewer>
@@ -35,6 +39,7 @@ import OpcConfigurator from "../components/opcConfigurator.vue";
 import tagPicker from "../components/tagPicker.vue";
 import methodConfigurator from "../components/methodConfigurator.vue";
 import nameConfig from "../components/nameConfig.vue";
+import metricsConfigurator from "../components/metricsConfig.vue"
 
 import Reviewer from "../components/reviewer.vue";
 
@@ -46,6 +51,7 @@ export default {
     tagPicker,
     methodConfigurator,
     Reviewer,
+    metricsConfigurator
   },
   computed: {
     displayedComponents() {
@@ -90,15 +96,16 @@ section h3 {
   animation-name: slidein;
   animation-duration: 1s;
 }
-.component > * {
+
+.component>* {
   margin-bottom: 1%;
 }
 
-.component > * > * {
+.component>*>* {
   margin: 1%;
 }
 
-.component > form {
+.component>form {
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
@@ -108,6 +115,7 @@ section h3 {
   from {
     opacity: 0%;
   }
+
   to {
     opacity: 100%;
   }

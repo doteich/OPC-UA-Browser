@@ -15,20 +15,20 @@
         <input type="text" v-model="targetURL" placeholder="https://URL" />
       </div>
       <div class="inputClass">
-  
+
         <label>Als Metrics-Endpunkt Bereitstellen (Prometheus)</label>
 
-       <input type="checkbox" class="checkbox" value="metrics" v-model="metrics">
+        <input type="checkbox" class="checkbox" value="metrics" v-model="metrics">
       </div>
       <div class="inputClass">
         <label>On Error Backup</label>
-       <input type="checkbox" class="checkbox" value="backup" v-model="backup">
+        <input type="checkbox" class="checkbox" value="backup" v-model="backup">
       </div>
       <div class="inputClass">
         <label>Beschreibung</label>
         <textarea v-model="description"></textarea>
       </div>
-      <button @click.prevent="setMethodData('reviewer')">Bestätigen</button>
+      <button @click.prevent="setMethodData()">Bestätigen</button>
 
     </form>
   </div>
@@ -40,7 +40,7 @@ export default {
     return {
       subInterval: 10,
       name: null,
-      targetURL: "https://", 
+      targetURL: "https://",
       description: null,
       metrics: false,
       backup: false,
@@ -48,24 +48,29 @@ export default {
     };
   },
   methods: {
-    setMethodData(component) {
+    setMethodData() {
       let payload = {
         subInterval: this.subInterval,
         name: this.name,
         targetURL: this.targetURL,
-        metrics: this.metrics,
+        metricsEnabled: this.metrics,
         backup: this.backup,
         description: this.description,
       };
+
       this.$store.commit("setMethodConfig", payload);
-      this.$store.commit("displayComponent", component);
+      if (this.metrics) {
+        this.$store.commit("displayComponent", "metricsConfigurator")
+      } else {
+        this.$store.commit("displayComponent", "reviewer");
+      }
     },
   },
 };
 </script>
 
 <style>
-.checkbox{
+.checkbox {
   width: 20px;
   height: 20px;
   margin: 1vh

@@ -1,398 +1,94 @@
-[{
-        "referenceTypeId": "ns=0;i=35",
-        "isForward": true,
-        "nodeId": "ns=0;i=85",
-        "browseName": {
-            "namespaceIndex": 0,
-            "name": "Objects"
-        },
-        "displayName": {
-            "locale": "en",
-            "text": "Objects"
-        },
-        "nodeClass": "Object",
-        "typeDefinition": "ns=0;i=61",
-        "index": [
-            0
-        ],
-        "childs": [{
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=0;i=2253",
-                "browseName": {
-                    "namespaceIndex": 0,
-                    "name": "Server"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "Server"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=2004",
-                "childs": [],
-                "index": [
-                    0,
-                    0
-                ]
+{
+    "opcConfig": {
+        "url": "opc.tcp://127.0.0.1:49320",
+        "securityPolicy": "None",
+        "securityMode": "None",
+        "autoGenCert": false,
+        "authType": "Anonymous",
+        "username": null,
+        "password": null,
+        "node": "ns=2;s=Kanal1.Gerät1",
+        "nodes": [
+            {
+                "nodeId": "ns=2;s=Kanal1.Gerät1.RAMPER",
+                "name": "RAMPER"
             },
             {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_AdvancedTags",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_AdvancedTags"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_AdvancedTags"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    1
-                ]
+                "nodeId": "ns=2;s=Kanal1.Gerät1.String",
+                "name": "String"
             },
             {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_ConnectionSharing",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_ConnectionSharing"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_ConnectionSharing"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    2
-                ]
+                "nodeId": "ns=2;s=Kanal1.Gerät1.Tag 1",
+                "name": "Tag 1"
             },
             {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_CustomAlarms",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_CustomAlarms"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_CustomAlarms"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    3
-                ]
+                "nodeId": "ns=2;s=Kanal1.Gerät1.Tag 2",
+                "name": "Tag 2"
             },
             {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_DataLogger",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_DataLogger"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_DataLogger"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    4
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_EFMExporter",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_EFMExporter"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_EFMExporter"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    5
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_IDF_for_Splunk",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_IDF_for_Splunk"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_IDF_for_Splunk"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    6
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_IoT_Gateway",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_IoT_Gateway"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_IoT_Gateway"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    7
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_LocalHistorian",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_LocalHistorian"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_LocalHistorian"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    8
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_Profile_Library",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_Profile_Library"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_Profile_Library"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    9
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_Redundancy",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_Redundancy"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_Redundancy"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    10
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_Scheduler",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_Scheduler"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_Scheduler"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    11
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_SecurityPolicies",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_SecurityPolicies"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_SecurityPolicies"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    12
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_SNMP Agent",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_SNMP Agent"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_SNMP Agent"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    13
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_System",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_System"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_System"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    14
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=_ThingWorx",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "_ThingWorx"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "_ThingWorx"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    15
-                ]
-            },
-            {
-                "referenceTypeId": "ns=0;i=35",
-                "isForward": true,
-                "nodeId": "ns=2;s=Kanal1",
-                "browseName": {
-                    "namespaceIndex": 2,
-                    "name": "Kanal1"
-                },
-                "displayName": {
-                    "locale": "en",
-                    "text": "Kanal1"
-                },
-                "nodeClass": "Object",
-                "typeDefinition": "ns=0;i=61",
-                "childs": [],
-                "index": [
-                    0,
-                    16
-                ]
+                "nodeId": "ns=2;s=Kanal1.Gerät1.Test Tag",
+                "name": "Test Tag"
             }
         ]
     },
-    {
-        "referenceTypeId": "ns=0;i=35",
-        "isForward": true,
-        "nodeId": "ns=0;i=86",
-        "browseName": {
-            "namespaceIndex": 0,
-            "name": "Types"
+    "selectedTags": [
+        {
+            "nodeId": "ns=2;s=Kanal1.Gerät1.RAMPER",
+            "name": "RAMPER",
+            "currentValue": 1,
+            "dataTypeId": 10,
+            "dataType": "Float",
+            "validMetricsType": true,
+            "exposeAsMetric": true,
+            "metricsType": "Counter"
         },
-        "displayName": {
-            "locale": "en",
-            "text": "Types"
+        {
+            "nodeId": "ns=2;s=Kanal1.Gerät1.String",
+            "name": "String",
+            "currentValue": "String 1",
+            "dataTypeId": 12,
+            "dataType": "String",
+            "validMetricsType": false,
+            "exposeAsMetric": false,
+            "metricsType": "Counter"
         },
-        "nodeClass": "Object",
-        "typeDefinition": "ns=0;i=61",
-        "index": [
-            1
-        ],
-        "childs": []
-    },
-    {
-        "referenceTypeId": "ns=0;i=35",
-        "isForward": true,
-        "nodeId": "ns=0;i=87",
-        "browseName": {
-            "namespaceIndex": 0,
-            "name": "Views"
+        {
+            "nodeId": "ns=2;s=Kanal1.Gerät1.Tag 1",
+            "name": "Tag 1",
+            "currentValue": 25,
+            "dataTypeId": 5,
+            "dataType": "UInt16",
+            "validMetricsType": true,
+            "exposeAsMetric": true,
+            "metricsType": "Counter"
         },
-        "displayName": {
-            "locale": "en",
-            "text": "Views"
+        {
+            "nodeId": "ns=2;s=Kanal1.Gerät1.Tag 2",
+            "name": "Tag 2",
+            "currentValue": 0,
+            "dataTypeId": 5,
+            "dataType": "UInt16",
+            "validMetricsType": true,
+            "exposeAsMetric": true,
+            "metricsType": "Counter"
         },
-        "nodeClass": "Object",
-        "typeDefinition": "ns=0;i=61",
-        "index": [
-            2
-        ],
-        "childs": []
+        {
+            "nodeId": "ns=2;s=Kanal1.Gerät1.Test Tag",
+            "name": "Test Tag",
+            "currentValue": 1,
+            "dataTypeId": 11,
+            "dataType": "Double",
+            "validMetricsType": true,
+            "exposeAsMetric": true,
+            "metricsType": "Gauge"
+        }
+    ],
+    "methodConfig": {
+        "subInterval": 10,
+        "name": null,
+        "targetURL": "https://",
+        "metricsEnabled": true,
+        "backup": false,
+        "description": null
     }
-]
+}

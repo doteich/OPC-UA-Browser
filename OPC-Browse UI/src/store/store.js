@@ -16,6 +16,7 @@ const store = createStore({
                 tagPicker: false,
                 nameConfig: false,
                 methodConfigurator: false,
+                metricsConfigurator: false,
                 reviewer: false,
             },
             endpointError: null
@@ -87,6 +88,10 @@ const store = createStore({
             }
         },
         setUpdatedSelectedTags(state, payload) {
+            for (let tag of payload) {
+                tag["exposeAsMetric"] = false
+                tag["metricsType"] = "Counter"
+            }
             state.selectedTags = payload
         },
         setMethodConfig(state, payload) {
@@ -101,6 +106,20 @@ const store = createStore({
                     tag.name = payload.name
                 }
             })
+        },
+        updateMetricsType(state, payload) {
+            state.selectedTags.forEach((tag) => {
+                if (tag.nodeId === payload.nodeId) {
+                    tag.metricsType = payload.metricsType
+                }
+            })
+        },
+        enableMetrics(state) {
+            for (let tag of state.selectedTags) {
+                if (tag.dataTypeId < 12) {
+                    tag.exposeAsMetric = true
+                }
+            }
         }
 
     },
