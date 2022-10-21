@@ -2,7 +2,7 @@
   <div>
     <h3>Konfiguration Speichern und Abschicken</h3>
     <button @click="saveAsJson()">Konfiguration Lokal Speichern</button>
-    <button>Abschicken</button>
+    <button @click="submit()">Abschicken</button>
   </div>
 </template>
 
@@ -26,7 +26,11 @@ export default {
        e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
       a.dispatchEvent(e);
     },
+      submit(){
+        this.$store.dispatch("submitConfig")
+      }
   },
+
 };
 </script>
 

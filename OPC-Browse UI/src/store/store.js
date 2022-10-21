@@ -190,6 +190,21 @@ const store = createStore({
                 })
                 .catch((err) => console.log(err))
 
+        },
+        submitConfig(context) {
+            let payload = {
+                opcConfig: context.state.opcConfig,
+                selectedTags: context.state.selectedTags,
+                methodConfig: context.state.methodConfig
+
+
+            }
+
+            payload.opcConfig.password = "TESTED"
+            payload.opcConfig.username = "USERNAME"
+            axios.post(`${urlPrefix}submit`,payload)
+            .then((res)=> console.log(res))
+            .catch((err)=> console.log(err))
         }
 
     }

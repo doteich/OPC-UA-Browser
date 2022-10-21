@@ -75,8 +75,9 @@ export default {
   align-items: center;
   border: 1px solid white;
   border-radius: 5px;
-  height: 5vh;
-  padding-top: 5px;
+  height: 60px;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 .horizontalInput {
