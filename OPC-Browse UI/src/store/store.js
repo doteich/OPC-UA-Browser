@@ -19,7 +19,25 @@ const store = createStore({
                 metricsConfigurator: false,
                 reviewer: false,
             },
-            endpointError: null
+            exporters: {
+                websockets: {
+                    enabled: false
+                },
+                prometheus: {
+                    enabled: false
+                },
+                rest: {
+                    enabled: false,
+                    targetURL: ""
+                },
+                mqtt: {
+                    enabled: false
+                },
+                postgres: {},
+
+            },
+            endpointError: null,
+
         }
     },
     // eslint-disable-next-line prettier/prettier
@@ -120,6 +138,13 @@ const store = createStore({
                     tag.exposeAsMetric = true
                 }
             }
+        },
+        setExporters(state, payload) {
+            console.log(payload)
+            state.exporters[payload.name].enabled = payload.value
+        },
+        setRestConfig(state, payload) {
+            state.exporters.rest.targetURL = payload
         }
 
     },
@@ -131,11 +156,12 @@ const store = createStore({
             let opcConfig = state.opcConfig
             let selectedTags = state.selectedTags
             let methodConfig = state.methodConfig
-
+            let exporters = state.exporters
             return {
                 opcConfig,
                 selectedTags,
-                methodConfig
+                methodConfig,
+                exporters
             }
         },
         displayedComponentsGetter(state) {
@@ -146,6 +172,9 @@ const store = createStore({
         },
         getSelectedTags(state) {
             return state.selectedTags
+        },
+        getExporters(state) {
+            return state.exporters
         }
     },
     actions: {
@@ -191,6 +220,7 @@ const store = createStore({
                 .catch((err) => console.log(err))
 
         },
+
         submitConfig(context) {
             let payload = {
                 opcConfig: context.state.opcConfig,
@@ -202,9 +232,9 @@ const store = createStore({
 
             payload.opcConfig.password = "TESTED"
             payload.opcConfig.username = "USERNAME"
-            axios.post(`${urlPrefix}submit`,payload)
-            .then((res)=> console.log(res))
-            .catch((err)=> console.log(err))
+            axios.post(`${urlPrefix}submit`, payload)
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err))
         }
 
     }

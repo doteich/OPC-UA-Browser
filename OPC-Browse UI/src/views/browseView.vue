@@ -1,11 +1,5 @@
 <template>
   <article class="browser">
-    <!--
-    <section>
-      <h2>1</h2>
-      <location-picker class="component"></location-picker>
-    </section>
-    -->
     <section>
       <h2>1</h2>
       <opc-configurator class="component"></opc-configurator>
@@ -22,10 +16,19 @@
       <h2>4</h2>
       <method-configurator class="component"></method-configurator>
     </section>
-    <section v-if="displayedComponents.metricsConfigurator">
-      <h2> <i class="bi bi-speedometer"></i></h2>
-      <metrics-configurator class="component"></metrics-configurator>
+    <section v-if="displayedComponents.methodConfigurator">
+      <h2>5</h2>
+      <exporter-config class="component"></exporter-config>
     </section>
+    <section v-if="selectedExporters.rest.enabled">
+      <h2> <img src="../assets/rest.png"></h2>
+      <rest-config class="component"></rest-config>
+    </section>
+    <section v-if="selectedExporters.prometheus.enabled">
+      <h2> <img src="../assets/prom.svg"></h2>
+      <prom-config class="component"></prom-config>
+    </section>
+
     <section v-if="displayedComponents.reviewer">
       <h2>5</h2>
       <reviewer class="component"></reviewer>
@@ -39,7 +42,9 @@ import OpcConfigurator from "../components/opcConfigurator.vue";
 import tagPicker from "../components/tagPicker.vue";
 import methodConfigurator from "../components/methodConfigurator.vue";
 import nameConfig from "../components/nameConfig.vue";
-import metricsConfigurator from "../components/metricsConfig.vue"
+import promConfig from "../components/exporters/promConfig.vue"
+import exporterConfig from "../components/exporterConfig.vue"
+import restConfig from "../components/exporters/restConfig.vue"
 
 import Reviewer from "../components/reviewer.vue";
 
@@ -51,12 +56,17 @@ export default {
     tagPicker,
     methodConfigurator,
     Reviewer,
-    metricsConfigurator
+    promConfig,
+    exporterConfig,
+    restConfig
   },
   computed: {
     displayedComponents() {
       return this.$store.getters.displayedComponentsGetter;
     },
+    selectedExporters() {
+      return this.$store.getters.getExporters
+    }
   },
 };
 </script>
@@ -119,5 +129,9 @@ section h3 {
   to {
     opacity: 100%;
   }
+}
+
+h2 img {
+  width: 50px;
 }
 </style>
