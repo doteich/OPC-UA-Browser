@@ -29,6 +29,11 @@
       <prom-config class="component"></prom-config>
     </section>
 
+    <section v-if="selectedExporters.mongodb.enabled">
+      <h2> <img src="../assets/mongo.svg"></h2>
+      <mongo-config class="component"></mongo-config>
+    </section>
+
     <section v-if="displayedComponents.reviewer">
       <h2>5</h2>
       <reviewer class="component"></reviewer>
@@ -45,6 +50,7 @@ import nameConfig from "../components/nameConfig.vue";
 import promConfig from "../components/exporters/promConfig.vue"
 import exporterConfig from "../components/exporterConfig.vue"
 import restConfig from "../components/exporters/restConfig.vue"
+import mongoConfig from "../components/exporters/mongoConfig.vue"
 
 import Reviewer from "../components/reviewer.vue";
 
@@ -58,7 +64,8 @@ export default {
     Reviewer,
     promConfig,
     exporterConfig,
-    restConfig
+    restConfig,
+    mongoConfig
   },
   computed: {
     displayedComponents() {

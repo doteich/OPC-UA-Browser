@@ -18,6 +18,12 @@
                 <img src="../assets/ws.png">
                 <label>Websockets</label>
             </div>
+
+            <div class="exporter" :class="[enabledExporters.mongodb ? 'enabled' : 'disabled', 'exporter']"
+                @click="selectExporter('mongodb')">
+                <img src="../assets/mongo.svg">
+                <label>MongoDB</label>
+            </div>
         </div>
     </div>
 </template>
@@ -29,7 +35,8 @@ export default {
             enabledExporters: {
                 rest: false,
                 prometheus: false,
-                websockets: false
+                websockets: false, 
+                mongodb: false
             }
         };
     },

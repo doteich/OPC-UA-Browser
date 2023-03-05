@@ -11,6 +11,8 @@ export default {
   computed: {
     completeConfig() {
       let config = this.$store.getters.configFileGetter;
+      delete config.opcConfig.nodes
+      delete config.opcConfig.node
       return config;
     },
   },

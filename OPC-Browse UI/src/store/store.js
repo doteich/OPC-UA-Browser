@@ -33,7 +33,12 @@ const store = createStore({
                 mqtt: {
                     enabled: false
                 },
-                postgres: {},
+                mongodb: {
+                    enabled: false,
+                    url: "",
+                    port: null,
+                    secretRef: ""
+                },
 
             },
             endpointError: null,
@@ -114,6 +119,7 @@ const store = createStore({
         },
         setMethodConfig(state, payload) {
             state.methodConfig = payload
+            state.opcConfig.secretRef = payload.secretRef
         },
         displayComponent(state, payload) {
             state.displayedItems[payload] = true
@@ -145,6 +151,11 @@ const store = createStore({
         },
         setRestConfig(state, payload) {
             state.exporters.rest.targetURL = payload
+        },
+        setMongoConfig(state, payload) {
+            state.exporters.mongodb.url = payload.url
+            state.exporters.mongodb.port = payload.port
+            state.exporters.mongodb.secretRef = payload.secretRef
         }
 
     },
